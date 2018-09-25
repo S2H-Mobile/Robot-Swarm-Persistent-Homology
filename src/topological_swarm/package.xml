@@ -7,11 +7,7 @@
   <maintainer email="S2H.Mobile@gmail.com">Stephan Hohne</maintainer>
   <author email="S2H.Mobile@gmail.com">Stephan Hohne</maintainer>
   <license>MIT</license>
-
-  <!-- Url tags are optional, but multiple are allowed, one per tag -->
-  <!-- Optional attribute type can be: website, bugtracker, or repository -->
-  <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/topological_swarm</url> -->
+  <url type="repository">https://github.com/S2H-Mobile/Robot-Swarm-Persistent-Homology</url>
 
   <!-- The *depend tags are used to specify dependencies -->
   <!-- Dependencies can be catkin packages or system dependencies -->
