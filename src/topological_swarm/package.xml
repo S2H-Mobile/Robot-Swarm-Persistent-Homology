@@ -5,7 +5,7 @@
   <description>This packages simulates a swarm of robots that creates a topological map of its environment.</description>
 
   <maintainer email="S2H.Mobile@gmail.com">Stephan Hohne</maintainer>
-  <author email="S2H.Mobile@gmail.com">Stephan Hohne</maintainer>
+  <author email="S2H.Mobile@gmail.com">Stephan Hohne</author>
   <license>MIT</license>
   <url type="repository">https://github.com/S2H-Mobile/Robot-Swarm-Persistent-Homology</url>
 
