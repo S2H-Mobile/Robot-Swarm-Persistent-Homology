@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <launch>
+  <include file="$(find topological_swarm)/launch/robot_description.launch"/>
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find topological_swarm)/worlds/connected.world"/>
   </include>
+
+  <node name="urdf_spawner_1" pkg="gazebo_ros"
+    type="spawn_model"
+    respawn="false" 
+    output="screen"
+    args="-urdf -param robot_description -x 2 -y 2 -z 4 -model swarm_agent1"/>
+
+  <node name="urdf_spawner_2" pkg="gazebo_ros"
+    type="spawn_model"
+    respawn="false" 
+    output="screen"
+    args="-urdf -param robot_description -x 3 -y 3 -z 4 -model swarm_agent2"/>
+
+  <node name="urdf_spawner_3" pkg="gazebo_ros"
+    type="spawn_model"
+    respawn="false" 
+    output="screen"
+    args="-urdf -param robot_description -x 3 -y 3 -z 2 -model swarm_agent3"/>
 </launch>

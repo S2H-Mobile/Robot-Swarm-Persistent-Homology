@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<robot>
+  <gazebo reference='base'>
+    <material>Gazebo/White</material>
+  </gazebo>
+</robot>
