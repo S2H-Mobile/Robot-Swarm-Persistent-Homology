@@ -10,17 +10,11 @@
     type="spawn_model"
     respawn="false" 
     output="screen"
-    args="-urdf -param robot_description -x 2 -y 2 -z 4 -model swarm_agent1"/>
+    args="-urdf -param robot_description -x 2 -y 2 -z 0.4 -model swarm_agent1"/>
 
   <node name="urdf_spawner_2" pkg="gazebo_ros"
     type="spawn_model"
     respawn="false" 
     output="screen"
-    args="-urdf -param robot_description -x 3 -y 3 -z 4 -model swarm_agent2"/>
-
-  <node name="urdf_spawner_3" pkg="gazebo_ros"
-    type="spawn_model"
-    respawn="false" 
-    output="screen"
-    args="-urdf -param robot_description -x 3 -y 3 -z 2 -model swarm_agent3"/>
+    args="-urdf -param robot_description -x 3 -y 3 -z 0.4 -model swarm_agent2"/>
 </launch>
