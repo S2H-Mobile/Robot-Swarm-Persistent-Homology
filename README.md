@@ -10,3 +10,9 @@ Start the simulation with
 ``` bash
 $ roslaunch topological_swarm world.launch
 ```
+
+Trigger agent movement with
+``` bash
+$ rosrun topological_swarm topological_swarm_pubvel
+```
+
