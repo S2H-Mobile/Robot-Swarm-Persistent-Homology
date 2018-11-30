@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <include file="$(find topological_swarm)/launch/robot_description.launch"/>
+
+  <group ns="agent1">
+    <node name="urdf_spawner"
+      pkg="gazebo_ros"
+      type="spawn_model"
+      respawn="false" 
+      output="screen"
+      args="-urdf -param /robot_description -x 2.0 -y 2.0 -z 0.4 -model swarm_agent1"/>
+    <node name="publish_velocity"
+      pkg="topological_swarm"
+      type="topological_swarm_pubvel"
+      launch-prefix="xterm -e" />
+  </group>
+
+  <group ns="agent2">
+    <node name="urdf_spawner"
+      pkg="gazebo_ros"
+      type="spawn_model"
+      respawn="false" 
+      output="screen"
+      args="-urdf -param /robot_description -x 2.0 -y -2.0 -z 0.4 -model swarm_agent2"/>
+    <node name="publish_velocity"
+      pkg="topological_swarm"
+      type="topological_swarm_pubvel"
+      launch-prefix="xterm -e" />
+  </group>
+</launch>
