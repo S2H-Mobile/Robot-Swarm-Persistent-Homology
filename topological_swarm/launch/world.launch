@@ -6,6 +6,10 @@
     <arg name="world_name" value="$(find topological_swarm)/worlds/connected.world"/>
   </include>
 
+  <node name="publish_velocity" pkg="topological_swarm"
+    type="topological_swarm_pubvel"
+    launch-prefix="xterm -e" />
+
   <node name="urdf_spawner_1" pkg="gazebo_ros"
     type="spawn_model"
     respawn="false" 
