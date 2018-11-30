@@ -10,5 +10,5 @@ Install ROS, Gazebo and x-term. Use `catkin_make` to build the ROS package.
 Start the simulation with
 
 ``` bash
-$ roslaunch topological_swarm world.launch
+$ roslaunch topological_swarm simulation.launch
 ```
