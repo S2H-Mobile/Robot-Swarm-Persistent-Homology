@@ -12,4 +12,17 @@
       <robotBaseFrame>base_footprint</robotBaseFrame>
     </plugin>
   </gazebo>
+  <gazebo reference="base_link">
+    <sensor name="bumper_sensor" type="contact">
+      <always_on>true</always_on>
+      <update_rate>20</update_rate>
+      <contact>
+        <collision>base_link_collision</collision>
+      </contact>
+      <plugin name="bumper_plugin" filename="libgazebo_ros_bumper.so">
+        <bumperTopicName>bumper_sensor_state</bumperTopicName>
+        <frameName>base_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
 </robot>
