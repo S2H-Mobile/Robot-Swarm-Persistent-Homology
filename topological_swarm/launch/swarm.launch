@@ -12,7 +12,7 @@
     <node name="publish_velocity"
       pkg="topological_swarm"
       type="topological_swarm_pubvel"
-      launch-prefix="xterm -e" />
+      output="screen" />
   </group>
 
   <group ns="agent2">
@@ -25,6 +25,6 @@
     <node name="publish_velocity"
       pkg="topological_swarm"
       type="topological_swarm_pubvel"
-      launch-prefix="xterm -e" />
+      output="screen" />
   </group>
 </launch>

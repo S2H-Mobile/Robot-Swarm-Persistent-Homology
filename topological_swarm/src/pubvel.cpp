@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
     msg.linear.y = 2 * double(rand())/double(RAND_MAX) - 1;
 
     pub.publish(msg);
-    ROS_INFO_STREAM("x= " << msg.linear.x << "y= " << msg.linear.y);
+    // ROS_INFO_STREAM("x= " << msg.linear.x << "y= " << msg.linear.y);
     rate.sleep();
   }
 }
