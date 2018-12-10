@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-  <include file="$(find topological_swarm)/launch/robot_description.launch"/>
 
+  <!-- Send urdf to param server -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find topological_swarm)/urdf/agent.xacro'" />
+
+  <!-- Send fake joint values-->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="false"/>
+  </node>
+
+  <!-- Agent 1 -->
   <group ns="agent1">
+    <!-- <param name="tf_prefix" value="robot1_tf" /> -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
     <node name="urdf_spawner"
       pkg="gazebo_ros"
       type="spawn_model"
@@ -15,7 +25,10 @@
       output="screen" />
   </group>
 
+  <!-- Agent 2 -->
   <group ns="agent2">
+    <!--<param name="tf_prefix" value="robot2_tf" /> -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
     <node name="urdf_spawner"
       pkg="gazebo_ros"
       type="spawn_model"
