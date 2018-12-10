@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
 
-  <!-- launch the simulated environment -->
+  <!-- Simulated environment -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find topological_swarm)/worlds/connected.world"/>
   </include>
 
-  <!-- launch the robot swarm -->
+  <!-- Agent Swarm -->
   <include file="$(find topological_swarm)/launch/swarm.launch"/>
+
+  <!-- Agent Visualization -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find topological_swarm)/config/agent.rviz"/>
 </launch>
