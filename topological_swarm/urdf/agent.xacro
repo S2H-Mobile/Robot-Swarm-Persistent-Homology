@@ -10,7 +10,7 @@
 
   <!-- root link, on the ground just below the model origin -->
   <link name="base_footprint">
-   <visual>
+    <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <box size="0.01 0.01 0.01" />
