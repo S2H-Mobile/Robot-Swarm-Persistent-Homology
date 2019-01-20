@@ -24,7 +24,7 @@ void contactMessageReceived(const gazebo_msgs::ContactsState &msg) {
   }
 }
 
-void writeContactsToFile() {
+void writeContactsToFileSigintHandler(int sig) {
 
   // generate file name
   const std::string name = ros::this_node::getName();
@@ -32,12 +32,14 @@ void writeContactsToFile() {
   std::cout << "Contact events vector for " << name << " contains " << contactEvents.size() <<" elements.\n";
 
   // TODO store the list of contact events
+   ros::shutdown();
 }
 
 int main(int argc, char **argv) {
-  ros::init(argc, argv, "subscribe_to_contact_message");
+  ros::init(argc, argv, "subscribe_to_contact_message", ros::init_options::NoSigintHandler);
   ros::NodeHandle nh;
+  signal(SIGINT, writeContactsToFileSigintHandler);
   ros::Subscriber sub = nh.subscribe("bumper_sensor_state", 1000, &contactMessageReceived);
   ros::spin();
-  writeContactsToFile();
+  return 0;
 }

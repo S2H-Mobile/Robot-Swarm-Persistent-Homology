@@ -3,6 +3,7 @@
 #include <string>
 #include <ros/ros.h>
 #include <ros/time.h>
+#include <signal.h>
 #include <gazebo_msgs/ContactsState.h>
 #include <gazebo_msgs/ContactState.h>
 #include <geometry_msgs/Vector3.h>
