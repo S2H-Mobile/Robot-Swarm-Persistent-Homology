@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
+  <arg name="use_rviz" default="0"/>
 
   <!-- Simulated environment -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -10,5 +11,5 @@
   <include file="$(find topological_swarm)/launch/swarm.launch"/>
 
   <!-- Agent Visualization -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find topological_swarm)/config/agent.rviz"/>
+  <node if="$(arg use_rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find topological_swarm)/config/agent.rviz"/>
 </launch>
