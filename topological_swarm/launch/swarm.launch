@@ -23,6 +23,10 @@
       pkg="topological_swarm"
       type="topological_swarm_pubvel"
       output="screen" />
+    <node name="subscribe_to_contact"
+      pkg="topological_swarm"
+      type="topological_swarm_subcontact"
+      output="screen" />
   </group>
 
   <!-- Agent 2 -->
@@ -38,6 +42,10 @@
     <node name="publish_velocity"
       pkg="topological_swarm"
       type="topological_swarm_pubvel"
+      output="screen" />
+    <node name="subscribe_to_contact"
+      pkg="topological_swarm"
+      type="topological_swarm_subcontact"
       output="screen" />
   </group>
 </launch>
