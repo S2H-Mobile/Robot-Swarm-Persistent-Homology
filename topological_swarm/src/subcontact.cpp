@@ -25,10 +25,18 @@ void contactMessageReceived(const gazebo_msgs::ContactsState &msg) {
 }
 
 void writeContactsToFileSigintHandler(const int signal) {
-  std::cout << "Contact events vector contains " << contactEvents.size() <<" elements.\n";
+
+  // create file name
+  std::string nameSpace = ros::this_node::getNamespace();
+  nameSpace.erase(std::remove(nameSpace.begin(), nameSpace.end(), '/'), nameSpace.end());
+  const char * fileName = nameSpace.c_str();
+
+  ROS_INFO_STREAM("Contact events vector contains " << contactEvents.size() <<" elements.\n");
+  ROS_INFO_STREAM("Saving events to file \"" << fileName << "\".\n");
+
   // store the list of contact events
   std::ofstream file;
-  file.open("contact_events.txt");
+  file.open(fileName);
   if (file.is_open()) {
     for (std::vector<ContactEvent>::iterator it = contactEvents.begin(); it != contactEvents.end(); ++it) {
       // read contact event from vector
@@ -43,7 +51,7 @@ void writeContactsToFileSigintHandler(const int signal) {
     }
     file.close();
   } else {
-    std::cout << "Unable to open file for writing.";
+    ROS_ERROR_STREAM("Unable to open file \"" << fileName << "\" for writing.\n");
   }
   ros::shutdown();
 }
