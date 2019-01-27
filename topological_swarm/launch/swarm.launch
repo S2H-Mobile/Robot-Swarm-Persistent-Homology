@@ -9,6 +9,12 @@
     <param name="use_gui" value="false"/>
   </node>
 
+  <!-- Subscriber to contact events -->
+  <node name="subscribe_to_contact"
+    pkg="topological_swarm"
+    type="topological_swarm_subcontact"
+    output="screen" />
+
   <!-- Agent 1 -->
   <group ns="agent1">
     <!-- <param name="tf_prefix" value="robot1_tf" /> -->
@@ -22,10 +28,6 @@
     <node name="publish_velocity"
       pkg="topological_swarm"
       type="topological_swarm_pubvel"
-      output="screen" />
-    <node name="subscribe_to_contact"
-      pkg="topological_swarm"
-      type="topological_swarm_subcontact"
       output="screen" />
   </group>
 
@@ -42,10 +44,6 @@
     <node name="publish_velocity"
       pkg="topological_swarm"
       type="topological_swarm_pubvel"
-      output="screen" />
-    <node name="subscribe_to_contact"
-      pkg="topological_swarm"
-      type="topological_swarm_subcontact"
       output="screen" />
   </group>
 </launch>
