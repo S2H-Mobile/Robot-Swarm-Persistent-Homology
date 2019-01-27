@@ -9,6 +9,12 @@ std::vector<ContactEvent> contactEvents;
 void contactMessageReceived(const gazebo_msgs::ContactsState &msg) {
   if (!(msg.states.empty())) {
 
+    // output information on vector at regular intervals
+    const int size = contactEvents.size();
+    if (size < 10 | size % 10 == 0) {
+      ROS_INFO_STREAM("Recording contact event #" << size <<".\n");
+    }
+
     // read the data from the message
     const gazebo_msgs::ContactState contactState = msg.states[0];
     const std::string info = contactState.info;
