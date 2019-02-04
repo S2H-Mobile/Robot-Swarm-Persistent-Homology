@@ -55,7 +55,7 @@ void writeContactsToFileSigintHandler(const int signal) {
       const double time = event.getContactTime();
       // convert object data to string
       std::ostringstream line;
-      line << "t: " << time << ", x: " << position.x << ", y: " << position.y << "\n";
+      line << "t: " << time << ",\tx: " << position.x << ",\ty: " << position.y << "\n";
       // write string to file
       file << line.str();
     }
