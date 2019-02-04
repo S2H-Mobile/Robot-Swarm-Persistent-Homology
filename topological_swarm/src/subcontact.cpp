@@ -19,9 +19,15 @@ void contactMessageReceived(const gazebo_msgs::ContactsState &msg) {
     const gazebo_msgs::ContactState contactState = msg.states[0];
     const geometry_msgs::Vector3 position = contactState.contact_positions[0];
 
+    // parse info string for timestamp
+    const std::string delimiter = "time:";
+    const int pos = contactState.info.find(delimiter) + delimiter.length();
+    const std::string token = contactState.info.substr(pos, 7);
+    const double time = std::atof(token.c_str());
+
     // construct a contact event
     ContactEvent event;
-    event.setContactTime(ros::Time::now().toSec());
+    event.setContactTime(time);
     event.setContactPosition(position);
 
     // append the event to the global vector
