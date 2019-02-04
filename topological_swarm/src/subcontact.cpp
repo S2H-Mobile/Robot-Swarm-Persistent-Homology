@@ -17,7 +17,6 @@ void contactMessageReceived(const gazebo_msgs::ContactsState &msg) {
 
     // read the data from the message
     const gazebo_msgs::ContactState contactState = msg.states[0];
-    const std::string info = contactState.info;
     const geometry_msgs::Vector3 position = contactState.contact_positions[0];
 
     // construct a contact event
