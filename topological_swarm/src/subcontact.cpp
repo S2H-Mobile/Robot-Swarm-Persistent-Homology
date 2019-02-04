@@ -21,7 +21,7 @@ void contactMessageReceived(const gazebo_msgs::ContactsState &msg) {
 
     // construct a contact event
     ContactEvent event;
-    event.setContactTime(ros::Time::now());
+    event.setContactTime(ros::Time::now().toSec());
     event.setContactPosition(position);
 
     // append the event to the global vector
@@ -46,7 +46,7 @@ void writeContactsToFileSigintHandler(const int signal) {
       // read contact event from vector
       ContactEvent event = *it;
       const geometry_msgs::Vector3 position = event.getContactPosition();
-      const ros::Time time = event.getContactTime();
+      const double time = event.getContactTime();
       // convert object data to string
       std::ostringstream line;
       line << "t: " << time << ", x: " << position.x << ", y: " << position.y << "\n";

@@ -12,25 +12,25 @@
 class ContactEvent {
 
   public:
-    void setContactTime(ros::Time time);
+    void setContactTime(double time);
     void setContactPosition(geometry_msgs::Vector3 position);
     void setMyGeometry(std::string input);
     void setOtherGeometry(std::string input);
-    ros::Time getContactTime();
+    double getContactTime();
     geometry_msgs::Vector3 getContactPosition();
     std::string getMyGeometry();
     std::string getOtherGeometry();
     void print();
 
   private:
-    ros::Time contactTime;
+    double contactTime;
     geometry_msgs::Vector3 contactPosition;
     std::string myGeometry;
     std::string otherGeometry;
 
 };
 
-void ContactEvent::setContactTime(ros::Time time) {
+void ContactEvent::setContactTime(double time) {
   contactTime = time;
 }
 
@@ -46,7 +46,7 @@ void ContactEvent::setOtherGeometry(std::string input) {
   otherGeometry = input;
 }
 
-ros::Time ContactEvent::getContactTime() {
+double ContactEvent::getContactTime() {
   return contactTime;
 }
 
