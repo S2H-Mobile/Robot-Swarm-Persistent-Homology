@@ -5,6 +5,13 @@
 // list of contact events
 std::vector<ContactEvent> contactEvents;
 
+// parse contact info for object name
+std::string parseForLink(const std::string s, const std::string key) {
+  const int start = s.find(key) + key.length();
+  const std::string token = s.substr(start, s.length() - start);
+  return token.substr(0, token.find("::"));
+}
+
 // handle a message from the bumper sensor
 void contactMessageReceived(const gazebo_msgs::ContactsState &msg) {
   if (!(msg.states.empty())) {
@@ -29,6 +36,8 @@ void contactMessageReceived(const gazebo_msgs::ContactsState &msg) {
     ContactEvent event;
     event.setContactTime(time);
     event.setContactPosition(position);
+    event.setMyGeometry(parseForLink(contactState.info, "my geom:"));
+    event.setOtherGeometry(parseForLink(contactState.info, "other geom:"));
 
     // append the event to the global vector
     contactEvents.push_back(event);
@@ -55,7 +64,7 @@ void writeContactsToFileSigintHandler(const int signal) {
       const double time = event.getContactTime();
       // convert object data to string
       std::ostringstream line;
-      line << "t: " << time << ",\tx: " << position.x << ",\ty: " << position.y << "\n";
+      line << "t: " << time << ",\tx: " << position.x << ",\ty: " << position.y << ",\tm: " << event.getMyGeometry() << ",\to: " << event.getOtherGeometry() << "\n";
       // write string to file
       file << line.str();
     }
