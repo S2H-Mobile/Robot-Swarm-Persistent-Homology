@@ -2,6 +2,13 @@
 // and stores contact events in a file.
 #include "subcontact.h"
 
+// delimiters for parsing contact info string
+#define DELIMITER_DOUBLE_COLON "::"
+#define DELIMITER_TIMESTAMP "time:"
+
+// set the length of timestamp token when parsing contact info
+#define LENGTH_TIME_TOKEN 7
+
 // list of contact events
 std::vector<ContactEvent> contactEvents;
 
@@ -9,7 +16,7 @@ std::vector<ContactEvent> contactEvents;
 std::string parseForLink(const std::string s, const std::string key) {
   const int start = s.find(key) + key.length();
   const std::string token = s.substr(start, s.length() - start);
-  return token.substr(0, token.find("::"));
+  return token.substr(0, token.find(DELIMITER_DOUBLE_COLON));
 }
 
 // handle a message from the bumper sensor
@@ -27,9 +34,9 @@ void contactMessageReceived(const gazebo_msgs::ContactsState &msg) {
     const geometry_msgs::Vector3 position = contactState.contact_positions[0];
 
     // parse info string for timestamp
-    const std::string delimiter = "time:";
+    const std::string delimiter = DELIMITER_TIMESTAMP;
     const int pos = contactState.info.find(delimiter) + delimiter.length();
-    const std::string token = contactState.info.substr(pos, 7);
+    const std::string token = contactState.info.substr(pos, LENGTH_TIME_TOKEN);
     const double time = std::atof(token.c_str());
 
     // construct a contact event
