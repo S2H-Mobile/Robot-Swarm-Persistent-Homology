@@ -12,6 +12,20 @@
 // list of contact events
 std::vector<ContactEvent> contactEvents;
 
+std::string parseForLink(const std::string s, const std::string key);
+void contactMessageReceived(const gazebo_msgs::ContactsState &msg);
+void writeContactsToFileSigintHandler(const int signal);
+
+int main(int argc, char **argv) {
+  ros::init(argc, argv, "subscribe_to_contact_message", ros::init_options::NoSigintHandler);
+  ros::NodeHandle nh;
+  signal(SIGINT, writeContactsToFileSigintHandler);
+  ros::Subscriber sub1 = nh.subscribe("agent1/bumper_sensor_state", 1000, &contactMessageReceived);
+  ros::Subscriber sub2 = nh.subscribe("agent2/bumper_sensor_state", 1000, &contactMessageReceived);
+  ros::spin();
+  return 0;
+}
+
 // parse contact info for object name
 std::string parseForLink(const std::string s, const std::string key) {
   const int start = s.find(key) + key.length();
@@ -82,12 +96,3 @@ void writeContactsToFileSigintHandler(const int signal) {
   ros::shutdown();
 }
 
-int main(int argc, char **argv) {
-  ros::init(argc, argv, "subscribe_to_contact_message", ros::init_options::NoSigintHandler);
-  ros::NodeHandle nh;
-  signal(SIGINT, writeContactsToFileSigintHandler);
-  ros::Subscriber sub1 = nh.subscribe("agent1/bumper_sensor_state", 1000, &contactMessageReceived);
-  ros::Subscriber sub2 = nh.subscribe("agent2/bumper_sensor_state", 1000, &contactMessageReceived);
-  ros::spin();
-  return 0;
-}
