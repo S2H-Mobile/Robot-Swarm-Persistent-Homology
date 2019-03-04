@@ -18,4 +18,4 @@ $ roslaunch topological_swarm simulation.launch
 ```
 Set the launch argument `use_rviz:=1` to visualize the agent model in RViz.
 
-Contact events between agents are saved in a text file when a simulation run ends.
+When a simulation run ends, the contact events between agents are saved as a plain text file at `~/.ros/subscribe_to_contact.txt`.
