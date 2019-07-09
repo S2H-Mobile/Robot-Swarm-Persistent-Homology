@@ -9,17 +9,23 @@
 // set the length of timestamp token when parsing contact info
 #define LENGTH_TIME_TOKEN 7
 
+// maximum number of contact events to be recorded
+#define MAX_COUNT_CONTACT_EVENT 500
+
 // list of contact events
 std::vector<ContactEvent> contactEvents;
 
+// flag to indicate whether contact events have been written to file
+bool saved = false;
+
 std::string parseForLink(const std::string s, const std::string key);
 void contactMessageReceived(const gazebo_msgs::ContactsState &msg);
-void writeContactsToFileSigintHandler(const int signal);
+void handleContactMessage(const gazebo_msgs::ContactsState &msg);
+void writeContactsToFile();
 
 int main(int argc, char **argv) {
-  ros::init(argc, argv, "subscribe_to_contact_message", ros::init_options::NoSigintHandler);
+  ros::init(argc, argv, "subscribe_to_contact_message");
   ros::NodeHandle nh;
-  signal(SIGINT, writeContactsToFileSigintHandler);
   ros::Subscriber sub1 = nh.subscribe("agent1/bumper_sensor_state", 1000, &contactMessageReceived);
   ros::Subscriber sub2 = nh.subscribe("agent2/bumper_sensor_state", 1000, &contactMessageReceived);
   ros::spin();
@@ -33,8 +39,18 @@ std::string parseForLink(const std::string s, const std::string key) {
   return token.substr(0, token.find(DELIMITER_DOUBLE_COLON));
 }
 
-// handle a message from the bumper sensor
+// callback for bumper sensor subscriber
 void contactMessageReceived(const gazebo_msgs::ContactsState &msg) {
+  if (contactEvents.size() < MAX_COUNT_CONTACT_EVENT) {
+    handleContactMessage(msg);
+  } else if (!saved) {
+    // save file one time
+    writeContactsToFile();
+    saved = true;
+  }
+}
+
+void handleContactMessage(const gazebo_msgs::ContactsState &msg) {
   if (!(msg.states.empty())) {
 
     // output information on vector at regular intervals
@@ -65,15 +81,11 @@ void contactMessageReceived(const gazebo_msgs::ContactsState &msg) {
   }
 }
 
-void writeContactsToFileSigintHandler(const int signal) {
-
+void writeContactsToFile() {
   // create file name
   std::string fileName = ros::this_node::getName();
   fileName.erase(std::remove(fileName.begin(), fileName.end(), '/'), fileName.end());
   fileName += ".txt";
-
-  ROS_INFO_STREAM("Saving " << contactEvents.size() << " contact events to file \"" << fileName << "\".\n");
-
   // store the list of contact events
   std::ofstream file;
   file.open(fileName.c_str());
@@ -90,9 +102,9 @@ void writeContactsToFileSigintHandler(const int signal) {
       file << line.str();
     }
     file.close();
+    ROS_INFO_STREAM("Saved " << contactEvents.size() << " contact events to file \"" << fileName << "\".\n");
   } else {
     ROS_ERROR_STREAM("Unable to open file \"" << fileName << "\" for writing.\n");
   }
-  ros::shutdown();
 }
 
