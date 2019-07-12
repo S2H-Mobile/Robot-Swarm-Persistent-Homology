@@ -13,6 +13,9 @@
     </plugin>
   </gazebo>
   <gazebo reference="base_link">
+    <gravity>0</gravity>
+  </gazebo>
+  <gazebo reference="base_link">
     <sensor name="bumper_sensor" type="contact">
       <always_on>true</always_on>
       <update_rate>20</update_rate>
