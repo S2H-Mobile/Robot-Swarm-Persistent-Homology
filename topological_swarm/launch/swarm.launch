@@ -46,4 +46,20 @@
       type="topological_swarm_pubvel"
       output="screen" />
   </group>
+
+  <!-- Agent 3 -->
+  <group ns="agent3">
+    <!--<param name="tf_prefix" value="robot2_tf" /> -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+    <node name="urdf_spawner"
+      pkg="gazebo_ros"
+      type="spawn_model"
+      respawn="false"
+      output="screen"
+      args="-urdf -param /robot_description -x -2.0 -y 2.0 -z 0.4 -model swarm_agent3"/>
+    <node name="publish_velocity"
+      pkg="topological_swarm"
+      type="topological_swarm_pubvel"
+      output="screen" />
+  </group>
 </launch>

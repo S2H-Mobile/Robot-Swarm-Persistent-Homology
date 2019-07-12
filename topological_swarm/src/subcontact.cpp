@@ -28,6 +28,7 @@ int main(int argc, char **argv) {
   ros::NodeHandle nh;
   ros::Subscriber sub1 = nh.subscribe("agent1/bumper_sensor_state", 1000, &contactMessageReceived);
   ros::Subscriber sub2 = nh.subscribe("agent2/bumper_sensor_state", 1000, &contactMessageReceived);
+  ros::Subscriber sub3 = nh.subscribe("agent3/bumper_sensor_state", 1000, &contactMessageReceived);
   ros::spin();
   return 0;
 }
