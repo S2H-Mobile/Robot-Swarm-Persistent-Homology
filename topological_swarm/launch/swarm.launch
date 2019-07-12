@@ -49,7 +49,7 @@
 
   <!-- Agent 3 -->
   <group ns="agent3">
-    <!--<param name="tf_prefix" value="robot2_tf" /> -->
+    <!--<param name="tf_prefix" value="robot3_tf" /> -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
     <node name="urdf_spawner"
       pkg="gazebo_ros"
