@@ -3,7 +3,7 @@ A simulated swarm of robots creates a topological map of its environment. The ro
 
 The location and timestamp of each contact between agents is recorded. When a simulation run is finished, a graph is constructed from the contact event database (TBD), and the Betti numbers of the corresponding simplicial complex are computed (TBD).
 
-The project contains two Gazebo environments, `basic.world` and `cafe.world` (see screenshot below). Both environments are conntected but not simply connected. The basic world is launched by default.
+The project contains two Gazebo environments, `basic.world` and `cafe.world` (launched by default, see screenshot below). In both environments, the free space has the shape of a flat plane with a circular disc removed. Therefore, the free space is conntected, but not simply connected.
 
 ![Gazebo screenshot.](./screenshot_gazebo.png)
 
