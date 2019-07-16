@@ -98,7 +98,17 @@ void writeContactsToFile() {
       const double time = event.getContactTime();
       // convert object data to string
       std::ostringstream line;
-      line << "t: " << time << ",\tx: " << position.x << ",\ty: " << position.y << ",\tm: " << event.getMyGeometry() << ",\to: " << event.getOtherGeometry() << "\n";
+      line << "t: "
+           << time
+           << ",\tx: "
+           << position.x
+           << ",\ty: "
+           << position.y
+           << ",\tm: "
+           << event.getMyGeometry()
+           << ",\to: "
+           << event.getOtherGeometry()
+           << "\n";
       // write string to file
       file << line.str();
     }
