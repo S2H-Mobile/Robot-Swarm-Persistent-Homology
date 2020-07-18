@@ -1,7 +1,7 @@
 # Robot-Swarm-Persistent-Homology
-A simulated swarm of robots creates a topological map of its environment. The robotic agents are represented by white spheres in the Gazebo environment. The agents move freely in the x-y-plane. They are subject to random pushes, so they perform a Brownian motion.
+In this Gazebo simulation, a swarm of robotic agents creates a topological map of its environment. Each of the robots performs a Brownian motion in the x-y-plane. When two robots bump into each other, the location and timestamp of the contact is recorded.
 
-The location and timestamp of each contact between agents is recorded. When a simulation run is finished, a graph is constructed from the contact event database (TBD), and the Betti numbers of the corresponding simplicial complex are computed (TBD).
+The simulation is run for a few minutes. When it is finished, a graph is constructed from the contact event database (TBD), and the Betti numbers of the corresponding simplicial complex are computed (TBD).
 
 The project contains two Gazebo environments, `basic.world` and `cafe.world` (launched by default, see screenshot below). In both environments, the free space has the shape of a flat plane with a circular disc removed. Therefore, the free space is conntected, but not simply connected.
 
